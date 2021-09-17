@@ -1,0 +1,32 @@
+{
+  "name": "getmyip",
+  "version": "1.0.0",
+  "description": "Buscar la ip y enviarla por Telegram",
+  "main": "index.js",
+  "bin": "index.js",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
+    "path": "^0.12.7",
+    "telegraf": "^4.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gusgeek/getMyIP.git"
+  },
+  "keywords": [
+    "buscar",
+    "ip",
+    "telegram"
+  ],
+  "author": "gusgeek",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gusgeek/getMyIP/issues"
+  },
+  "homepage": "https://github.com/gusgeek/getMyIP#readme"
+}
