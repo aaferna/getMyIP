@@ -1,10 +1,9 @@
-const path = require('path');
-const deployPath = path.dirname(process.execPath);
 require('dotenv').config();
-path.join(deployPath, "/.env")
+const path = require('path');
+
 let tetok = process.env.TELEGTOK
 const { Telegraf } = require('telegraf')
-bot = new Telegraf(process.env.TELEGTOK)
+bot = new Telegraf(tetok)
 
 
 bot.catch((err, ctx) => {
