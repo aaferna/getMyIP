@@ -1,4 +1,14 @@
-Crear archivo .env con los siguientes datos
+## Archivo de Configuracion
 
-TELEGTOK=19590QYUgsZdnxQpR5EwC4I -- Se obtiene desde el BotFather
-TELEGchat=-3523423417 -- ID de su char, usar /chatIDclog para verlo desde la consola
+Crear config.json
+
+```json
+  {
+      "TELEGRAMBOT":"2001134532:AAFCYI5plHlNtzn6YP3Aehdm-DwrtRMkHec",
+      "TELEGRAMCHATID":"-524515516"
+  }
+```
+
+## Inicializar App
+
+Para iniciarlo use ` ejecutable "./config.json" `
