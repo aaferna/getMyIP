@@ -1,17 +1,23 @@
 {
   "name": "getmyip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Buscar la ip y enviarla por Telegram",
   "main": "index.js",
-  "bin": "index.js",
   "dependencies": {
     "axios": "^0.21.4",
     "dotenv": "^10.0.0",
     "telegraf": "^3.39.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "electron": "^15.0.0",
+    "electron-builder": "^22.11.7"
+  },
   "scripts": {
-    "test": "node index.js"
+    "start": "electron . dev",
+    "patch": "npm version patch",
+    "major": "npm version major",
+    "minor": "npm version minor",
+    "build": "npm version patch && electron-builder -wlm"
   },
   "repository": {
     "type": "git",

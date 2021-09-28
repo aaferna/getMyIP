@@ -1,10 +1,17 @@
 require('dotenv').config();
 const path = require('path');
-
-let tetok = process.env.TELEGTOK
+const process = require('process'); 
 const { Telegraf } = require('telegraf')
-bot = new Telegraf(tetok)
 
+let args
+
+if(process.argv.slice(1)[1] === "dev"){
+    args = "./config.json"
+} else {
+    args = process.argv.slice(1)[0]
+}
+
+bot = new Telegraf(require(args).TELEGRAMBOT)
 
 bot.catch((err, ctx) => {
     console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
@@ -23,7 +30,7 @@ bot.command('buscarip', (ctx) => {
             url: 'http://ipinfo.io/ip'
         })
         .then((response) => { 
-                bot.telegram.sendMessage(process.env.TELEGchat, response.data)
+                bot.telegram.sendMessage(require(args).TELEGRAMCHATID, response.data)
         })
         .catch((error) => { console.log(error); });
     } catch (error) {
