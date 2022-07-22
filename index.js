@@ -1,44 +1,53 @@
-require('dotenv').config();
-const path = require('path');
-const process = require('process'); 
-const { Telegraf } = require('telegraf')
+const   path = require('path'),
+        nodemailer = require('nodemailer'),
+        axios = require('axios');
 
-let args
-
-if(process.argv.slice(1)[1] === "dev"){
-    args = "./config.json"
-} else {
-    args = process.argv.slice(1)[0]
-}
-
-bot = new Telegraf(require(args).TELEGRAMBOT)
-
-bot.catch((err, ctx) => {
-    console.log(`Ooops, encountered an error for ${ctx.updateType}`, err)
-})
-
-bot.command('chatIDclog', (ctx) => {
-    console.log(ctx.message.chat.id)
-})
-
-bot.command('buscarip', (ctx) => {
-    
-    try {
-        const axios = require('axios');
-        axios({
-            method: 'get',
-            url: 'http://ipinfo.io/ip'
-        })
-        .then((response) => { 
-                bot.telegram.sendMessage(require(args).TELEGRAMCHATID, response.data)
-        })
-        .catch((error) => { console.log(error); });
-    } catch (error) {
-        console.log(error);
+    if(process.argv.slice(1)[1] === "dev"){
+        args = require("./config.json")
+    } else {
+        args = require(process.argv.slice(1)[0])
     }
 
-})
+const enviaMail = (ip) => { 
+
+    let transporter = nodemailer.createTransport(args.email);
+  
+    let mailOptions = {
+        from: args.email.auth.user,
+        to: args.to,
+        subject: 'Nueva IP Local',
+        text: ip
+    };
+  
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+        console.log(error);
+        } else {
+        console.log('Email sent: ' + info.response);
+        }
+    });
+
+}
+
+let lastip = 0
+
+setInterval(() => {
 
 
+    axios({
+        method: 'get',
+        url: 'http://ipinfo.io/ip'
+    })
+    .then((response) => { 
 
-bot.launch()
+        if (lastip == response.data){}
+        else {
+            lastip = response.data
+            console.log('last ip', lastip)
+            enviaMail(lastip)
+        }
+
+
+    })
+    
+}, args.timer);

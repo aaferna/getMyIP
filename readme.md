@@ -3,10 +3,20 @@
 Crear config.json
 
 ```json
-  {
-      "TELEGRAMBOT":"2001134532:AAFCYI5plHlNtzn6YP3Aehdm-DwrtRMkHec",
-      "TELEGRAMCHATID":"-524515516"
-  }
+{
+      "email": {
+            "host": "smtp-mail.outlook.com",
+            "port": 587,
+            "secure": false, 
+            "auth": {
+                  "user": "lalala@outlook.com.ar", 
+                  "pass": "$%TGFD"
+            }
+      },
+      "timer": 10000,
+      "to": "lalalal@outlook.com.ar"
+}
+
 ```
 
 ## Inicializar App
